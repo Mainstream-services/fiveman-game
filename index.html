@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    background: rgb(144, 238, 144);
+  }
+
+  .second_pitch_phase {
+    position: relative; /* Add relative positioning to the flex container */
+    display: flex;
+    width: 600px;
+    height: 300px;
+    background: green;
+    border: 8px solid white;
+    margin-left: 100px;
+    margin-top: 100px;
+  }
+
+  .person {
+    position: absolute; /* Add absolute positioning to the child elements */
+    width: 3px;
+    height: 35px;
+    border-radius: 5px;
+  }
+
+  .first_person {
+    background: white;
+    border: 1px groove yellow;
+    top: 10px;
+    left: 6px;
+  }
+
+  .second_person {
+    background: white;
+    border: 1px groove yellow;
+    top: 12px;
+    left: 590px;
+  }
+
+  .third_person {
+    background: white;
+    border: 1px groove yellow;
+    top: 260px;
+    left: 5px;
+  }
+
+  .fourth_person {
+    background: white;
+    border: 1px groove yellow;
+    top: 262px;
+    left:591px;
+  }
+
+  .fifth_person {
+    background: black;
+    border: 1px groove yellow;
+    top: 50%;
+    left: 50%;
+  }
+
+  .ball {
+    background: red;
+    position: absolute;
+    top: 185px;
+    left: 300px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  @keyframes myBallAnimation {
+    0%{top:185px;left:}
+    25%{top:185px}
+  }
+
+  #animateButton {
+    background: blue;
+    height: 20px;
+    width: 35px;
+    position: absolute;
+    font-size:12px;
+    line-height:14px;
+    text-align:center;
+    color:red;
+    left:110px;
+    margin:3px 2px;
+    
+  }
+  
+</style>
+</head>
+<body>
+  <div class="second_pitch_phase">
+    <div class="first_person person" id="player1"></div>
+    <div class="second_person person" id="player2"></div>
+    <div class="third_person person" id="middleMan"></div>
+    <div class="fourth_person person" id="player4"></div>
+    <div class="fifth_person person" id="player5"></div>
+    <div class="ball" id="ball"></div>
+  </div>
+  <button id="animateButton">Start</button>
+  
+  <script>
+    var player1 = document.getElementById("player1");
+    var player2 = document.getElementById("player2");
+    var player3 = document.getElementById("middleMan");
+    var player4 = document.getElementById("player4");
+    var player5 = document.getElementById("player5");
+    var ball = document.getElementById("ball");
+const players = [player1, player2, player3, player4, player5];
+    const playersIndex=Math.floor(Math.random()*players.length + 1)
+     
+    //make a function and pass object reference of player and ball
+    
+function Animate(){
+  const ballY=[10,12,260,262,150,];
+  let ballYcoords=ball.style.top;
+  
+  const ballYindex=Math.floor(Math.random()*ballY.length);
+    
+    ballYcoords=ballY[ballYindex];
+    switch (ballYcoords){
+case 10:
+    ball.style.top= 10 + "px";
+    ball.style.left=6+ "px";
+    ball.style.animate=firstAnimation
+break;
+case 12:
+ball.style.top= 12 + "px";
+    ball.style.left=590+ "px";
+    break;
+case 260:
+ball.style.top= 260 + "px";
+    ball.style.left=5+ "px";
+    break;
+case 262:
+ball.style.top= 262 + "px";
+    ball.style.left=591+ "px";
+    break;
+case 300:
+ball.style.top= 150 + "px";
+    ball.style.left=300+ "px";
+    break;
+default:
+    break;
+    }
+const middlePositionX=player5.style.left;
+const middlePositionY=player5.style.top;
+
+const middlePlayerYCoords = [10, 12, 260, 262, 150, 15, 25, 38, 100];
+const middlePlayerIndex=Math.floor(Math.random()*middlePlayerYCoords.length);
+middlePlayer=middlePlayerYCoords[middlePlayerIndex];
+ 
+ switch (middlePlayer){
+case 10:
+    player5.style.top= 10 + "px";
+    player5.style.left=6+ "px";
+break;
+case 12:
+player5.style.top= 12 + "px";
+    player5.style.left=590+ "px";
+    break;
+case 260:
+player5.style.top= 260 + "px";
+    player5.style.left=5+ "px";
+    break;
+case 262:
+player5.style.top= 262 + "px";
+    player5.style.left=591+ "px";
+    break;
+case 300:
+player5.style.top= 150 + "px";
+    player5.style.left=300+ "px";
+    break;
+case 15:
+player5.style.top= 100 + "px";
+    player5.style.left=15+ "px";
+    break;
+case 25:
+player5.style.top= 80+ "px";
+    player5.style.left=25+ "px";
+    break;
+case 38:
+player5.style.top= 200 + "px";
+    player5.style.left=38+ "px";
+    break;
+case 100:
+player5.style.top= 150 + "px";
+    player5.style.left=100+ "px";
+    break;
+default:
+    break;
+    }
+    if(ball.style.left==player5.style.left && ball.style.top==player5.style.top){
+players[playersIndex].style.left=middlePositionX;
+players[playersIndex].style.top=middlePositionY;
+players[playersIndex].style.backgroundColor="blue";
+
+    }
+
+  
+
+}
+const animateButton=document.getElementById("animateButton");
+animateButton.addEventListener("click",function(){
+  begin();
+  });
+  function begin(){
+    const intervalId= setInterval(Animate,5000);
+    setInterval(Animate,5000);
+    clearInterval(intervalId);
+  }
+   gi
+  </script>
+
+</body>
+</html>
